@@ -1,0 +1,65 @@
+Atividade 5
+
+> use uc4atividade5 
+< switched to db uc4atividade5
+
+> db.produto.insertMany([
+{nomeProduto: "Ventilador",
+ descricao: "Ventilador preto 30cm",
+ estoque: 10,
+ fabricante: "Ultravento"},
+{nomeProduto: "Televisão",
+descricao: "Tv smart de 40 polegadas",
+estoque: 15,
+fabricante: "Belle Tech"},
+{nomeProduto: "Liquidificador",
+descricao: "Cor branca 110v",
+estoque: 20,
+fabricante: "Mundi"},
+{nomeProduto: "Torradeira",
+descricao: "220v",
+estoque: 10,
+fabricante: "TopTech"},
+{nomeProduto: "Geladeira",
+descricao: "Cor cinza, duas portas",
+estoque: 5,
+fabricante: "Sulcon"}]) 
+< {
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6701efcfd752d4b5c1afaf14'),
+    '1': ObjectId('6701efcfd752d4b5c1afaf15'),
+    '2': ObjectId('6701efcfd752d4b5c1afaf16'),
+    '3': ObjectId('6701efcfd752d4b5c1afaf17'),
+    '4': ObjectId('6701efcfd752d4b5c1afaf18')
+  }
+}
+
+> db.produto.updateOne(
+{ "nomeProduto": "Televisão" },
+{ $set: { "nomeProduto": "Bolsa", "descricao": "Cor preta, de couro", "estoque": 15, "fabricante": "Ju Beauty"}}
+);
+<  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+> db.produto.find({"nomeProduto": "Geladeira"})
+< {
+  _id: ObjectId('6701efcfd752d4b5c1afaf18'),
+  nomeProduto: 'Geladeira',
+  descricao: 'Cor cinza, duas portas',
+  estoque: 5,
+  fabricante: 'Sulcon'
+}
+
+> db.produto.find({"fabricante": "Ultravento"})
+< 
+  _id: ObjectId('6701efcfd752d4b5c1afaf14'),
+  nomeProduto: 'Ventilador',
+  descricao: 'Ventilador preto 30cm',
+  estoque: 10,
+  fabricante: 'Ultravento'
+}
